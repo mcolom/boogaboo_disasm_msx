@@ -19,3 +19,5 @@ Compile it with: z80asm disassembly.asm
 It should generate a a.bin file with the following SHA sum: 9a63f2a6064a8e28f7251f78c3e91672f5de5253.
 
 If you want to create a CAS file, simply join the HEADER file with a.bin and rename it to BOOGA.CAS.
+
+![](http://mcolom.perso.math.cnrs.fr/ext_images/pulga/gi_scenario.png)
