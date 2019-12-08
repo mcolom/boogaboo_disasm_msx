@@ -1417,40 +1417,44 @@ skip_pulga_captured:
 draw_bicho_mouth_closed:
 	ld hl,SPRITE_BICHO_FACE ;873b	21 d0 93 	! . . 
 draw_bicho:
-	ld de,07900h			;873e [ToDo] What is this address in VRAM???
+	ld de,07900h			;873e This deserves an explanation here...
+    ; MSX1 has 16K of VRAM (0...0x3fff). Thus, this address is
+    ; actually hex(0x7900 & 0x3fff) = 0x3900 = 
+    ; = SPRITE_CHARACTER_PATTERNS + 0x100 = SPRITE_CHARACTER_PATTERNS + 32*8
+
 	ld a,(BICHO_STATUS1)	;8741
 	rla						;8744
 	jr c,draw_bicho_legs_right	;8745 Jump if Bicho looks to the right
 	; Bicho looks to the left
 	ld bc,00020h		;8747	01 20 00 	.   . 
 	call LDIRVM		;874a Update sprite
-	ld hl,SPRITE_BICHO_LEGS_ADDR ;874d	21 f0 93 	! . . 
+	ld hl,SPRITE_BICHO_LEGS_ADDR ;874d
 	ld de,SPRITE_CHARACTER_PATTERNS + 32*9 ;8750
-	ld bc,00020h		;8753	01 20 00 	.   . 
-	call LDIRVM		;8756 Update sprite
+	ld bc,00020h		;8753
+	call LDIRVM		    ;8756 Update sprite
 	jr choose_bicho_wings_frame		;8759
 draw_bicho_legs_right:
 	call FLIP_SPRITE_WITH_INIT		;875b
 	ld hl,SPRITE_BICHO_LEGS_ADDR	;875e
 	call FLIP_SPRITE				;8761
 choose_bicho_wings_frame:
-	ld a,(BICHO_FRAME)		;8764
-	inc a			;8767
-	and 003h		;8768
+	ld a,(BICHO_FRAME)		        ;8764
+	inc a			                ;8767
+	and 003h		                ;8768
 	ld (BICHO_FRAME),a
-	ld hl,SPRITE_BICHO_WINGS1 ;876d
-	jr z,draw_bicho_wings		;8770
-	ld hl,SPRITE_BICHO_WINGS3 ;8772
-	cp 002h		;8775 
-	jr z,draw_bicho_wings		;8777
-	ld hl,SPRITE_BICHO_WINGS2 ;8779
+	ld hl,SPRITE_BICHO_WINGS1       ;876d
+	jr z,draw_bicho_wings		    ;8770
+	ld hl,SPRITE_BICHO_WINGS3       ;8772
+	cp 002h		                    ;8775 
+	jr z,draw_bicho_wings		    ;8777
+	ld hl,SPRITE_BICHO_WINGS2       ;8779
 draw_bicho_wings:
-	ld a,(BICHO_STATUS1)		;877c
-	rla			;877f
-	jr c,l878dh		;8780
+	ld a,(BICHO_STATUS1)		    ;877c
+	rla			                    ;877f
+	jr c,l878dh		                ;8780
 	ld de,SPRITE_CHARACTER_PATTERNS + 32*10 ;8782
-	ld bc,00020h		;8785
-	call LDIRVM		;8788 Update sprite
+	ld bc,00020h		            ;8785
+	call LDIRVM		                ;8788 Update sprite
 	; Sprites #13, #15, #14 (wings of Bicho)
 	jr l8790h		;878b
 l878dh:
