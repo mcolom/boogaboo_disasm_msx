@@ -683,28 +683,28 @@ l82d4h:
 	; This is the series of automatic jumps of Pulga at the beginning
 	; HL is the number of ticks the jump key is pressed during the simulation
 
-	ld hl,00400h		;832a	21 00 04 	! . . 
-	call SIMULATED_JUMP		;832d	cd 81 81 	. . . 
+	ld hl,00400h		    ;832a
+	call SIMULATED_JUMP		;832d
 
-	ld hl,00800h		;8330	21 00 08 	! . . 
-	call SIMULATED_JUMP		;8333	cd 81 81 	. . . 
+	ld hl,00800h		    ;8330
+	call SIMULATED_JUMP		;8333
 
-	ld hl,00500h		;8336	21 00 05 	! . . 
-	call SIMULATED_JUMP		;8339	cd 81 81 	. . . 
+	ld hl,00500h		    ;8336
+	call SIMULATED_JUMP		;8339
 
-	ld hl,00780h		;833c	21 80 07 	! . . 
-	call SIMULATED_JUMP		;833f	cd 81 81 	. . . 
+	ld hl,00780h		    ;833c
+	call SIMULATED_JUMP		;833f
 
 	; Enable back GTSTCK and GTTRIG
-	ld hl,GTSTCK		;8342	21 d5 00 	! . . 
-	ld (l89fch+1),hl		;8345	22 fd 89 	" . . 
+	ld hl,GTSTCK		    ;8342
+	ld (l89fch+1),hl		;8345
 
-	ld hl,GTTRIG		;8348	21 d8 00 	! . . 
-	ld (l8956h+1),hl	;834b	22 57 89 	" W . 
+	ld hl,GTTRIG		    ;8348
+	ld (l8956h+1),hl	    ;834b
 
-	ld a,0cdh			;834e
-	ld (l8956h),a		;8350
-	ld (l89fch),a		;8353
+	ld a,0cdh			    ;834e
+	ld (l8956h),a		    ;8350
+	ld (l89fch),a		    ;8353
 
 	; Set initial depth
 	ld a,96					 ;8356
@@ -1966,10 +1966,10 @@ l8a0dh:
 
 	ex af,af'			;8a13
 	ld a,(JUMP_LENGTH)		;8a14
-	ld b,a			;8a17 
-	add a,a			;8a18
-	add a,b			;8a19
-	ld (FLIGHT),a	;8a1a FLIGHT =  4 * JUMP_LENGTH
+	ld b,a			;8a17 B = JUMP_LENGTH
+	add a,a			;8a18 A = 2 * JUMP_LENGTH
+	add a,b			;8a19 A = 2 * JUMP_LENGTH + JUMP_LENGTH = 3 * JUMP_LENGTH
+	ld (FLIGHT),a	;8a1a FLIGHT = 3 * JUMP_LENGTH
 
 	ld a,0f0h		;8a1d
 	ld (jump_sound_pitch),a	;8a1f
