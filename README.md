@@ -20,4 +20,4 @@ It should generate a a.bin file with the following SHA sum: `9a63f2a6064a8e28f72
 
 If you want to create a CAS file, simply join the `HEADER` file together with `a.bin` and rename it to BOOGA.CAS.
 
-![](http://mcolom.perso.math.cnrs.fr/ext_images/pulga/gi_scenario.png)
+![](http://mcolom.info/ext_images/pulga/gi_scenario.png)
