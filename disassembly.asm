@@ -1407,7 +1407,7 @@ set_pulga_captured:
 	ld a,(BICHO_THREAT_STATUS)		;872e
 
 	set 7,a		;8731 Activate Pulga-captured (oops!) flag.
-	; Removing this instructions makes Bicho unable to grab Pulba
+	; Removing this instructions makes Bicho unable to grab Pulga
 	
 	ld (BICHO_THREAT_STATUS),a		;8733
 
@@ -2527,7 +2527,7 @@ GET_VRAM_TILE_POS_H_L:
 ; six bytes each.
 ;
 ; The records have the following structure:
-; TX, TX, B0, B1, B2, B3.
+; TY, TX, B0, B1, B2, B3.
 
 ; Each record contains an target location (TX, TY) followed by
 ; four indices other four blocks.
