@@ -53,12 +53,19 @@ for pos, (x, y, c1, c2, c3, c4) in points.items():
     next4 = points[c4]
     
     rr, cc = draw.line(x, y, next1[0], next1[1])
-    rr, cc = draw.line(x, y, next2[0], next2[1])
-    rr, cc = draw.line(x, y, next3[0], next3[1])
-    rr, cc = draw.line(x, y, next4[0], next4[1])
-    
-    
     I[rr, cc] = (255, 255, 255)
+    
+    rr, cc = draw.line(x, y, next2[0], next2[1])
+    I[rr, cc] = (255, 255, 255)
+    
+    rr, cc = draw.line(x, y, next3[0], next3[1])
+    I[rr, cc] = (255, 255, 255)
+    
+    rr, cc = draw.line(x, y, next4[0], next4[1])
+    I[rr, cc] = (255, 255, 255)
+    
+    
+    
     
 # Save marked map
 I = imageio.imsave("gi_marked_scenario.png", I)
